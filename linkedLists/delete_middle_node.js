@@ -14,14 +14,10 @@ function deleteMidde(list, target){
     1. traverse linkedList
     2. compare each node's value to the target, act accordingly
   */
-  let node = list;
+  let node = list
   while(node.next){
-    if(node.val === target){
-      node.next = node.next.next;
-    }
-    else{
-      node = node.next;
-    }
+    if(node.val === target) node.next = node.next.next
+    else node = node.next
   }
-  return list;
+  return list
 }
