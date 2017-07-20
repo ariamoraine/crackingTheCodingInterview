@@ -9,63 +9,91 @@
  how would you want the lists returned?
 
 */
-function LinkedList (value) {
-  this.value = value
+
+function Node(val){
+  this.value = val
   this.next = null
 }
 
+class LinkedList {
+  constructor(){
+    this.head = null
+    this.tail = null
+  }
+
+  addToTail(val){
+    let x = new Node(val)
+    if(!this.head){
+      this.head = x
+      this.tail = x
+    }
+    else{
+      let currTail = this.tail
+      currTail.next = x
+      this.tail = x
+    }
+  }
+}
+
 function treeList(tree){
-// first: get the depth -- how many buckets?
-  // start at root, put value into first bucket
-  // start at first bucket and iterate through values in bucket,
-    // find value in tree,
-    // inset that tree's children into next bucket
-  // move on to next bucket when done iterating
-    // repeat 21 + 22
-  // make linked lists out of each bucket
-  // return array of linked lists
   const depth = findDepth(tree)
   const resultsArr = new Array(depth) // [ __ , __ , __ ]
-  resultsArr[0] = [tree.value]
+  const linkedListArr = []
 
   for(let i = 0; i < depth; i++){
-
-    let next = resultsArr[i] // [ 10 ]
-      , children = null
-
-
-    for(let j = 0; j < next.length; j++){
-
-      console.log("I", i)
-      console.log("J", j)
-
-      let curr = resultsArr[i][j] // 10
-
-      // console.log("CURR", curr)
-
-      children = findCurrChildren(tree, curr) // [ 4, 19 ]
-      resultsArr[i+1] = children
-      children = null
-      // console.log("RESULTS ARR", resultsArr)
-      // console.log("CHILDREN", children)
+    if(i === 0){
+      resultsArr[i] = [tree.value]
     }
-
+    else {
+      resultsArr[i] = []
+    }
   }
 
 
+  for(let i = 0; i < depth; i++){
+    let currSubArr = resultsArr[i] // [ 10 ]
+      , children = null
+
+    for(let j = 0; j < currSubArr.length; j++){
+      let currNumber = resultsArr[i][j] // 10
+
+      children = findCurrChildren(tree, currNumber) // [ 4, 19 ]
+      if(resultsArr[i+1]){
+        resultsArr[i+1] = resultsArr[i+1].concat(children)
+      }
+      children = null
+    }
+  }
+
+  for(let i = 0; i < resultsArr.length; i++){
+    linkedListArr[i] = new LinkedList()
+    linkedListArr[i].addToTail(resultsArr[i][0])
+
+    for(let j = 1; j < resultsArr[i].length; j++){
+      linkedListArr[i].addToTail(resultsArr[i][j])
+    }
+  }
+  return linkedListArr
 }
 
 function findCurrChildren(tree, val){
-
   let queue = [tree]
 
   while(queue.length){
     let curr = queue.shift()
     if(curr.value === val) {
+      if(curr.left && curr.right){
        return [curr.left.value, curr.right.value]
+      }
+      if(curr.left && !curr.right){
+        return [curr.left.value]
+      }
+      if(!curr.left && curr.right){
+        return [curr.right.value]
+      }
     }
-    else if(curr.left) queue.push(curr.left)
-    else if(curr.right) queue.push(curr.right)
+    if(curr.left) queue.push(curr.left)
+    if(curr.right) queue.push(curr.right)
   }
 }
 
@@ -107,23 +135,3 @@ let myTree = {
 
 console.log(treeList(myTree))
 // [ { val: 10, next: null}, { val: 4, next: { val: 19, next: null}}, { val: 3, next: { val: 5, next: { val: 17, next: {val: 20, next: null }}}} ]
-
-
-
-
-
-
-    // let currTree = queue.shift()
-    // let currSet
-    // if(!currTree) return
-    // else if(currTree.length === 1){
-    //   currSet = [currTree[0].left, currTree[0].right]
-    // }
-    // else{
-    //   currTree.forEach(node => {
-    //     currTree.push(node.left)
-    //     currTree.push(node.right)
-    //   })
-    // }
-    // groups.push(currSet)
-    // currSet = []
