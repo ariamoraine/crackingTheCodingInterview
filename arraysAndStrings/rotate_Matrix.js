@@ -21,7 +21,5 @@ Space: O(n)
 */
 
 
-
-
-rotateMatrix([[1, 2, 3, 4], [0, 1, 2, 3], [0, 0, 1, 2], [1, 0, 0, 1]]);
-// rotateMatrix([['a', 'b', 'c'], ['d', 'e', 'f'], ['g', 'h', 'i']])
+console.log(rotateMatrix([[1, 2, 3, 4], [0, 1, 2, 3], [0, 0, 1, 2], [1, 0, 0, 1]]))
+console.log(rotateMatrix([['a', 'b', 'c'], ['d', 'e', 'f'], ['g', 'h', 'i']]))
