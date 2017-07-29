@@ -1,4 +1,4 @@
-function zeroMatrix(arr){
+module.exports = function zeroMatrix (arr) {
   let x = new Set()
   let y = new Set()
   for(let i = 0; i < arr.length; i++){
@@ -20,5 +20,3 @@ function zeroMatrix(arr){
   }
   return arr
 }
-
-console.log(zeroMatrix([[0,1,2,3,0,5], [1,3,5,6,2,10], [10,3,2,0,8,9]])) // [ [0, 0, 0, 0, 0, 0], [0, 3, 5, 0, 0, 10 ], [0, 0, 0, 0, 0, 0] ]
