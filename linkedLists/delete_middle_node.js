@@ -8,16 +8,18 @@ EXAMPLE:
   output: nothing is returned, but the new linked list looks like a-> b -> d -> e -> f
 */
 
-function deleteMidde(list, target){
+module.exports = function deleteMiddle(list, target){
   // if the nodes value === target, then delete it (rearrange the next node it's pointing to)
   /* APPROACH:
     1. traverse linkedList
     2. compare each node's value to the target, act accordingly
   */
-  let node = list
-  while(node.next){
-    if(node.val === target) node.next = node.next.next
-    else node = node.next
+  let current = list.head, prev = null
+  while(current){
+    if(current.value === target) {
+      prev.next = current.next
+    }
+    prev = current
+    current = current.next
   }
-  return list
 }

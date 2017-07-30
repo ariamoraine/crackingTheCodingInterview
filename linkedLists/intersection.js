@@ -1,6 +1,6 @@
 function intersection(list1, list2){
 
-  let ll1 = list1, ll1couarnt = 0, ll2 = list2, ll2count = 0, tail1, tail2, pointer1 = ll1, pointer2 = ll2
+  let ll1 = list1, ll1count = 0, ll2 = list2, ll2count = 0, tail1, tail2, pointer1 = ll1, pointer2 = ll2
 
   while(ll1){
     ll1count+=1

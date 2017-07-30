@@ -11,7 +11,6 @@ function linkListFlip (ll) {
 
 function numFlip (num) {
   let strNum = '' + num
-  console.log("TO STRING NUM", strNum)
   let arr = strNum.split('')
   let head = null
   let tail = null
