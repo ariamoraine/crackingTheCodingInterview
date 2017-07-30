@@ -13,9 +13,7 @@ module.exports = function zeroMatrix (arr) {
     let changeX = x.has(i) ? true : false
     for(let j = 0; j < arr[i].length; j++){
       let changeY = y.has(j) ? true : false
-      if(changeX || changeY){
-        arr[i][j] = 0
-      }
+      if(changeX || changeY) arr[i][j] = 0
     }
   }
   return arr
