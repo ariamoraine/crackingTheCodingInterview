@@ -4,7 +4,7 @@ class LinkedList {
   }
 
   insert (val) {
-    const node = new Node(val)
+    const node = typeof val === 'object' ? val : new Node(val)
     if(!this.head) this.head = node
     else{
       let current = this.head
